@@ -434,4 +434,13 @@ const swiper = new Swiper('.swiper', {
 		el: '.swiper-scrollbar',
 	}, */
 	grabCursor: true,
+	loop: true,
+	autoplay: {
+		delay: 7000,
+	},
+	speed: 5000,
+	effect: 'fade',
+	fadeEffect: {
+		crossFade: true
+	},
 });
