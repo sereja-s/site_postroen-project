@@ -1322,7 +1322,7 @@ img {
 	padding-left: 80px;
 	padding: 10px 10px 20px 30px;
 
-	background-color: #ffa550a6;
+	background-color: #ffa550de;
 	border-radius: 10px;
 }
 
@@ -1451,7 +1451,7 @@ img {
 @media (max-width: 1600px) {
 	.section-contacts__img {
 		right: -150px;
-		bottom: -200px;
+		/* bottom: -200px; */
 	}
 }
 

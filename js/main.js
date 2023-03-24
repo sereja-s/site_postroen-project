@@ -1,5 +1,5 @@
 /* libs start */
-; (function () {
+/* ; (function () {
 	var canUseWebP = function () {
 		var elem = document.createElement('canvas');
 
@@ -30,12 +30,17 @@
 	var lazyLoadInstance = new LazyLoad({
 		elements_selector: ".lazy"
 	});
-})();
+})(); */
 /* libs end */
 
-/* myLib start */
+/* myLib start - набор повторяющихся элементов для повторного использования */
 ; (function () {
+
+	// создаём глобальную переменную (пустой объект)
 	window.myLib = {};
+
+
+	// допишем в него повторяющиеся элементы и функции:
 
 	window.myLib.body = document.querySelector('body');
 
@@ -54,6 +59,7 @@
 		return null;
 	};
 
+
 	window.myLib.closestItemByClass = function (item, className) {
 		var node = item;
 
@@ -68,14 +74,19 @@
 		return null;
 	};
 
+	// чтобы отключить прокручивание контента под открытым попапом, в функции добавляем(убираем) для body, класс: 
+	// no-scroll (для которого прописано соответствующее св-во в main.css)
 	window.myLib.toggleScroll = function () {
 		myLib.body.classList.toggle('no-scroll');
 	};
 })();
 /* myLib end */
 
-/* header start */
-; (function () {
+
+
+/* header start - изменение высоты шапки в начале прокрутки (если разиер экрана больше 992px */
+
+/* ; (function () {
 	if (window.matchMedia('(max-width: 992px)').matches) {
 		return;
 	}
@@ -89,11 +100,12 @@
 			headerPage.classList.remove('is-active');
 		}
 	});
-})();
+})(); */
 /* header end */
 
 /* popup start */
 ; (function () {
+
 	var showPopup = function (target) {
 		target.classList.add('is-active');
 	};
@@ -119,6 +131,7 @@
 		}
 	});
 
+	// закрытие попапа при нажатии на закрывающей кнопке открытого попапа или затемнённой области вокруг
 	myLib.body.addEventListener('click', function (e) {
 		var target = e.target;
 
@@ -131,6 +144,7 @@
 		}
 	});
 
+	// закрытие попапа при нажатии на клавишу: Esc (keyCode === 27)
 	myLib.body.addEventListener('keydown', function (e) {
 		if (e.keyCode !== 27) {
 			return;
@@ -147,9 +161,8 @@
 
 /* popup end */
 
-/* scrollTo start */
+/* scrollTo start - переход к конкретному месту сайта при нажатии на соответствующий пункт меню или кнопку */
 ; (function () {
-
 
 	var scroll = function (target) {
 		var targetTop = target.getBoundingClientRect().top;
@@ -237,7 +250,7 @@
 /* catalog end */
 
 /* product start */
-; (function () {
+/* ; (function () {
 	var catalog = document.querySelector('.catalog');
 
 	if (catalog === null) {
@@ -291,7 +304,7 @@
 			changeProductOrderInfo(target);
 		}
 	});
-})();
+})(); */
 /* product end */
 
 /* map start */
@@ -350,7 +363,7 @@
 /* map end */
 
 /* form start */
-; (function () {
+/* ; (function () {
 	var forms = document.querySelectorAll('.form-send');
 
 	if (forms.length === 0) {
@@ -409,7 +422,7 @@
 			formSend(form);
 		});
 	}
-})();
+})(); */
 /* form end */
 
 //===================================================================================================================//
