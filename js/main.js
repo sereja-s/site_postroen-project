@@ -191,13 +191,16 @@
 })();
 /* scrollTo end */
 
-/* catalog start */
+// #6 Верстка сайта для начинающих | JavaScript. Фильтр, динамические данные, яндекс карта
+
+/* catalog start - при нажатии на категорию выводятся товары данной категории */
 ; (function () {
 	var catalogSection = document.querySelector('.section-catalog');
 
 	if (catalogSection === null) {
 		return;
 	}
+
 
 	var removeChildren = function (item) {
 		while (item.firstChild) {
@@ -211,6 +214,7 @@
 			item.appendChild(children[i]);
 		}
 	};
+
 
 	var catalog = catalogSection.querySelector('.catalog');
 	var catalogNav = catalogSection.querySelector('.catalog-nav');
@@ -232,6 +236,7 @@
 		item.classList.add('is-active');
 
 		if (filterValue === 'all') {
+			// добавляем все элементы
 			updateChildren(catalog, catalogItems);
 			return;
 		}
@@ -240,10 +245,10 @@
 		for (var i = 0; i < catalogItems.length; i += 1) {
 			var current = catalogItems[i];
 			if (current.getAttribute('data-category') === filterValue) {
+				// добавляем отфильтрованные элементы
 				filteredItems.push(current);
 			}
 		}
-
 		updateChildren(catalog, filteredItems);
 	});
 })();
@@ -257,10 +262,12 @@
 		return;
 	}
 
+
 	var updateProductPrice = function (product, price) {
 		var productPrice = product.querySelector('.product__price-value');
 		productPrice.textContent = price;
 	};
+
 
 	var changeProductSize = function (target) {
 		var product = myLib.closestItemByClass(target, 'product');
@@ -271,6 +278,7 @@
 		target.classList.add('is-active');
 		updateProductPrice(product, newPrice);
 	};
+
 
 	var changeProductOrderInfo = function (target) {
 		var product = myLib.closestItemByClass(target, 'product');
@@ -291,6 +299,7 @@
 		order.querySelector('.order__img').setAttribute('src', productImgSrc);
 	};
 
+
 	catalog.addEventListener('click', function (e) {
 		var target = e.target;
 
@@ -307,7 +316,7 @@
 })(); */
 /* product end */
 
-/* map start */
+/* map start - подключение карты с реализацией её загрузки только когда доскроллили до секции: section-contacts */
 ; (function () {
 	var sectionContacts = document.querySelector('.section-contacts');
 
@@ -318,19 +327,19 @@
 
 		ymaps.ready(function () {
 			var myMap = new ymaps.Map('ymap', {
-				center: [55.755241, 37.617779],
-				zoom: 16
+				center: [47.991522, 37.798313],
+				zoom: 18
 			}, {
 				searchControlProvider: 'yandex#search'
 			}),
 
 				myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-					balloonContent: 'г. Москва, Преображенская площадь, 8'
+					balloonContent: 'г.Донецк, ориентир ТЦ Золотое кольцо'
 				}, {
 					iconLayout: 'default#image',
-					iconImageHref: '../img/common/marker.svg',
-					iconImageSize: [40, 63.2],
-					iconImageOffset: [-50, -38]
+					iconImageHref: '../img/common/logotextSitePostroen.png',
+					iconImageSize: [100, 70],
+					iconImageOffset: [-55, 155]
 				});
 
 			myMap.geoObjects.add(myPlacemark);
@@ -339,12 +348,14 @@
 		});
 	};
 
+
 	var ymapLoad = function () {
 		var script = document.createElement('script');
-		script.src = 'https://api-maps.yandex.ru/2.1/?lang=en_RU';
+		script.src = 'https://api-maps.yandex.ru/2.1/?lang=RU';
 		myLib.body.appendChild(script);
 		script.addEventListener('load', ymapInit);
 	};
+
 
 	var checkYmapInit = function () {
 		var sectionContactsTop = sectionContacts.getBoundingClientRect().top;
@@ -356,6 +367,7 @@
 			window.removeEventListener('scroll', checkYmapInit);
 		}
 	};
+
 
 	window.addEventListener('scroll', checkYmapInit);
 	checkYmapInit();
