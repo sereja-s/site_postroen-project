@@ -403,7 +403,7 @@ body {
 	font-weight: 300;
 	font-size: 16px;
 	line-height: 1.375;
-	color: #1f1f1f;
+	color: #1f1f1fcc;
 }
 
 img {
@@ -485,8 +485,8 @@ img {
 }
 
 .phone__item--accent {
-	border-color: #ffa650;
-	color: #ffa650;
+	border-color: #ff8811;
+	color: #ff8811;
 }
 
 .phone__item:hover {
@@ -587,7 +587,7 @@ img {
 }
 
 .page-title--accent {
-	color: #ffa650;
+	color: #f88c27;
 }
 
 @media (max-width: 576px) {
@@ -626,21 +626,21 @@ img {
 	font-size: 18px;
 	font-family: 'Montserrat', sans-serif;
 	font-weight: 900;
-	color: #e6e6e6;
+	color: #cab5eb;
 	border-right: 1px solid #e5e5e5;
 	transition: border .2s, background .2s, color .2s;
 }
 
 .catalog-nav__btn.is-active {
-	background: #1f1f1f;
+	background: #ff8811;
 	color: #fff;
-	border-color: #1f1f1f;
+	border-color: #ff8811;
 }
 
 .catalog-nav__btn:not(.is-active):hover {
-	background: #ffa650;
+	background: #ff8811b9;
 	color: #fff;
-	border-right-color: #ffa650;
+	border-right-color: #ff8811b9;
 }
 
 .catalog-nav__item:last-of-type .catalog-nav__btn {
@@ -790,7 +790,7 @@ img {
 
 .product__description {
 	margin: 0;
-	color: #9f9f9f;
+	color: #7a7777;
 }
 
 .product__content {
@@ -891,14 +891,14 @@ img {
 }
 
 .socials__icon {
-	fill: #ffa650;
+	fill: #5111fffb;
 	width: 35px;
 	height: 35px;
 	transition: fill .2s, opacity .2s;
 }
 
 .socials__icon--vk:hover {
-	fill: #5078A5;
+	fill: #0373f3;
 }
 
 .socials__icon--fb:hover {
@@ -957,7 +957,7 @@ img {
 .btn-close::before,
 .btn-close::after {
 	content: '';
-	background: #d2d2d2;
+	background: #7a777777;
 	height: 40px;
 	width: 3px;
 	position: absolute;
@@ -992,7 +992,7 @@ img {
 	display: block;
 	font-family: 'Montserrat', sans-serif;
 	font-size: 24px;
-	color: inherit;
+	color: #ff8811;
 	font-weight: 900;
 	text-align: center;
 	transition: background .2s, color .2s, opacity .2s;

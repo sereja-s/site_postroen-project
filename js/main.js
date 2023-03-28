@@ -33,6 +33,8 @@
 })(); */
 /* libs end */
 
+//===================================================================================================================//
+
 /* myLib start - набор повторяющихся элементов для повторного использования */
 ; (function () {
 
@@ -43,6 +45,7 @@
 	// допишем в него повторяющиеся элементы и функции:
 
 	window.myLib.body = document.querySelector('body');
+
 
 	window.myLib.closestAttr = function (item, attr) {
 		var node = item;
@@ -60,6 +63,12 @@
 	};
 
 
+	/**
+	 * функция находит ближайший элемент у которого класс соответствует параметру переданному на вход 2-ым: className
+	 * @param {*} item 
+	 * @param {*} className 
+	 * @returns 
+	 */
 	window.myLib.closestItemByClass = function (item, className) {
 		var node = item;
 
@@ -82,7 +91,7 @@
 })();
 /* myLib end */
 
-
+//===================================================================================================================//
 
 /* header start - изменение высоты шапки в начале прокрутки (если разиер экрана больше 992px */
 
@@ -102,6 +111,10 @@
 	});
 })(); */
 /* header end */
+
+//====================================================================================================================//
+
+// #5 Верстка сайта для начинающих | JavaScript. Настройка попапов, скролл к элементам
 
 /* popup start */
 ; (function () {
@@ -191,6 +204,8 @@
 })();
 /* scrollTo end */
 
+//===================================================================================================================//
+
 // #6 Верстка сайта для начинающих | JavaScript. Фильтр, динамические данные, яндекс карта
 
 /* catalog start - при нажатии на категорию выводятся товары данной категории */
@@ -202,14 +217,31 @@
 	}
 
 
+	/**
+	 * функция удаляющая все дочерние злементы из показа (не будут выводиться на экран) для поданого на вход параметра
+	 * @param {*} item 
+	 */
 	var removeChildren = function (item) {
+
+		// Свойство firstChild обеспечивают быстрый доступ к первому дочернему элементу
 		while (item.firstChild) {
+
+			// Операция removeChild разрывает все связи между удаляемым узлом и его родителем
 			item.removeChild(item.firstChild);
 		}
 	};
 
+	/**
+	 * функция обновляет содержимое элемента (для вывода на экран) в соответствии с запросом
+	 * @param {*} item 
+	 * @param {*} children 
+	 */
 	var updateChildren = function (item, children) {
+
+		// сначала удалим все элементы каталога которые выводились ранее
 		removeChildren(item);
+
+		// в цикле добавим в каталог (выведем на экран) необходимые нам элементы каталога (соответствующие выбранной категории)
 		for (var i = 0; i < children.length; i += 1) {
 			item.appendChild(children[i]);
 		}
@@ -221,38 +253,68 @@
 	var catalogItems = catalogSection.querySelectorAll('.catalog__item');
 
 	catalogNav.addEventListener('click', function (e) {
+
+		// находим элемент по которому кликнули
 		var target = e.target;
+
+		// ближайшийЭлементПоклассу
+		// находим ближайший элемент у которого класс: catalog-nav__btn
 		var item = myLib.closestItemByClass(target, 'catalog-nav__btn');
 
+		// Метод contains для проверки на вложенность (Синтаксис: var result = parent.contains(child);
+		// Возвращает true, если parent содержит child или parent == child)
+		// Если item равен null или содержит класс: is-active
 		if (item === null || item.classList.contains('is-active')) {
+
+			// выходим (на выполняем скрипт)
 			return;
 		}
 
 		e.preventDefault();
+
+		// получим значение атрибута переданного на вход в качестве параметра методу: getAttribute()
 		var filterValue = item.getAttribute('data-filter');
+
+		// найдём предыдущую активную кнопку
 		var previousBtnActive = catalogNav.querySelector('.catalog-nav__btn.is-active');
 
+		// удаляем класс: is-active у предыдущей активной кнопки
 		previousBtnActive.classList.remove('is-active');
+
+		// а текущей активной кнопке добавляем класс: is-active
 		item.classList.add('is-active');
 
 		if (filterValue === 'all') {
-			// добавляем все элементы
+
+			// добавляем все элементы (все элементы каталога будут показаны (выведены на экран))
 			updateChildren(catalog, catalogItems);
 			return;
 		}
 
+		// если значение атрибута элемента на котором сработало событие: click не равно all, то
 		var filteredItems = [];
+
+		// в цикле 
 		for (var i = 0; i < catalogItems.length; i += 1) {
+
+			// получим текущий элемент
 			var current = catalogItems[i];
+
+			// если значение атрибута: data-category текущего элемента, равно значению атрибута полученного ранее: data-filter
 			if (current.getAttribute('data-category') === filterValue) {
-				// добавляем отфильтрованные элементы
+
+				// добавляем текущий элемент (в итоге получим массив с отфильтрованными элементами)
 				filteredItems.push(current);
 			}
 		}
+		// будут показаны только элементы каталога соответствующие выбранному фильтру
 		updateChildren(catalog, filteredItems);
 	});
 })();
+
 /* catalog end */
+
+//===================================================================================================================//
 
 /* product start */
 /* ; (function () {
