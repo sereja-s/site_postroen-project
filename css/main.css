@@ -779,6 +779,11 @@ img {
 	margin: 0 auto 15px;
 	width: 340px;
 	height: 207px;
+	transition: transform .7s;
+}
+
+.product__img-link:hover .product__img {
+	transform: scale(1.2);
 }
 
 .product__title {
@@ -842,6 +847,7 @@ img {
 	background: #ffa650;
 	width: 200px;
 	padding: 14px 20px;
+	text-decoration: none;
 }
 
 .product__btn:hover {

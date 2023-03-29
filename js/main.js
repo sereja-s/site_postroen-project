@@ -388,18 +388,23 @@
 		}
 
 		ymaps.ready(function () {
+
+			var ymap = document.querySelector('.contacts__map');
+			var coordinates = ymap.getAttribute('data-coordinates');
+			var address = ymap.getAttribute('data-address');
+
 			var myMap = new ymaps.Map('ymap', {
-				center: [47.991522, 37.798313],
+				center: coordinates.split(','),
 				zoom: 18
 			}, {
 				searchControlProvider: 'yandex#search'
 			}),
 
 				myPlacemark = new ymaps.Placemark(myMap.getCenter(), {
-					balloonContent: 'г.Донецк, ориентир ТЦ Золотое кольцо'
+					balloonContent: address
 				}, {
 					iconLayout: 'default#image',
-					iconImageHref: '../img/common/logotextSitePostroen.png',
+					iconImageHref: pathForJS.siteUrl + 'img/common/logotextSitePostroen.png',
 					iconImageSize: [100, 70],
 					iconImageOffset: [-55, 155]
 				});
